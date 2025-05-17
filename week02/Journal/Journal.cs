@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.IO;
+using System.Formats.Asn1;
 
 public class Journal
 {
@@ -32,6 +33,7 @@ public class Journal
         _journalEntries.Add(journalEntry);
     }
 
+    //Display all Journal Entries
     public void DisplayAll()
     {
         foreach (Entry i in _journalEntries)
@@ -40,24 +42,48 @@ public class Journal
         }
     }
 
+    //Save journal entries to a .csv file
     public void SaveToFile(string file)
     {
         using (StreamWriter outputFile = new StreamWriter(file))
         {
+            //Saving as .csv file, write CSV header
+            outputFile.WriteLine("Date,Prompt,Entry");
+
+            //Write each journal entry as a line
             foreach (Entry j in _journalEntries)
             {
-                outputFile.WriteLine(j);
+                //Add quotes around fields, escape (double) existing quotes, and add commas
+                string date = EscapeCsv(j._dateOfEntry);
+                string prompt = EscapeCsv(j._journalPrompt);
+                string text = EscapeCsv(j._journalEntryText);
+
+
+                outputFile.WriteLine($"{date},{prompt},{text}");
             }
         }
     }
 
+    //Additional method that is used in SaveToFile
+    //Replaces anything that would mess up the csv formatting or wraps it in quotes
+    private string EscapeCsv(string value)
+    {
+        if (value.Contains(",") || value.Contains("\"") || value.Contains("\n"))
+        {
+            value = value.Replace("\"", "\"\"");
+            value = $"\"{value}\"";
+        }
+        return value;
+    }
+
+    //Loads journal references from file
     public void LoadFromFile(string file)
     {
         string[] lines = System.IO.File.ReadAllLines(file);
 
         foreach (string line in lines)
         {
-            string[] parts = line.Split("|");
+            string[] parts = line.Split(",");
 
             Entry entryFromFile = new Entry();
             entryFromFile._dateOfEntry = parts[0];

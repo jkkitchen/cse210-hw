@@ -34,7 +34,7 @@ class Program
             else if (userMenuChoice == 3)
             {
                 //3. Save the journal to a file.
-                Console.Write("Please enter a filename: ");
+                Console.Write("Please enter a filename (ending with .csv): ");
                 string saveFilename = Console.ReadLine();
                 myJournal.SaveToFile(saveFilename);
                 Console.WriteLine("File has been saved.");
