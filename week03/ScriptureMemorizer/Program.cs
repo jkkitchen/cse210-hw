@@ -6,7 +6,7 @@ class Program
     {
         //Call scripture from ScriptureGenerator class, it will be randomly selected from the 3 scriptures saved there
         ScriptureGenerator generator = new ScriptureGenerator();
-        Scripture scripture = generator.GetRandomScripture();             
+        Scripture scripture = generator.GetRandomScripture();
 
         //Initial value for the number of words that are hidden
         int numberWordsHidden = 0;
@@ -31,14 +31,14 @@ class Program
                 //Clear the console
                 Console.Clear();
 
-                //Add one to the word counter
-                numberWordsHidden++;
+                //Set numberWordsHidden to 1 so it will hide one word each time Enter is pressed
+                numberWordsHidden = 1;
 
                 //Update the scripture text to have more words hidden
                 scripture.HideRandomWords(numberWordsHidden);
             }
-            
-        } while (scripture.IsCompletelyHidden() == false);       
+
+        } while (scripture.IsCompletelyHidden() == false);
 
     }
 }
