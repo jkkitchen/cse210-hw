@@ -7,7 +7,8 @@ class Program
         //Create variable for the menu option the user selects
         int userMenuChoice;
 
-        //Create initial values for the number of times each exercise is performed
+        //Showing creativity by tracking the number of times each activity is done in a session.
+        //Create initial values
         int breathingActivityLog = 0;
         int reflectingActivityLog = 0;
         int listingActivityLog = 0;
