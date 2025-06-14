@@ -183,9 +183,10 @@ public class GoalManager
                 string name = goalAttributes[0];
                 string description = goalAttributes[1];
                 int points = int.Parse(goalAttributes[2]);
+                int numberCompleted = int.Parse(goalAttributes[3]);
 
                 //Create Eternal Goal and add it to _goals
-                EternalGoal eternalGoal = new EternalGoal(name, description, points);
+                EternalGoal eternalGoal = new EternalGoal(name, description, points, numberCompleted);
                 _goals.Add(eternalGoal);
             }
             else if (typeOfGoal == "ChecklistGoal")
