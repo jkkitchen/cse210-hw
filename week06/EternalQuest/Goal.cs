@@ -1,6 +1,6 @@
 using System;
 
-public class Goal
+public abstract class Goal
 {
     //----Member Attributes----
     protected string _goalName;
@@ -17,19 +17,31 @@ public class Goal
 
     //----Methods----
 
-    //Will do whatever is necessary for each kind of goal (marking complete, adding to number of times completed, etc.)
-    public abstract void RecordEvent();
+    //RecordEvent will return the number of points earned
+    public abstract int RecordEvent();
 
     //Will return if the goal is completed. This will be different for each type of goal.
-    public abstract Boolean IsComplete();
+    public abstract bool IsComplete();
 
-    //Will return the details of a goal that could be shown in a list (checkbox, name, description).
-    public virtual string GetDetailsString()
+    //Will return the details of a goal that could be shown in a list (checkbox, name, description). 
+    public virtual string GetDetailsString(bool isComplete)
     {
-        return $"{_checkbox} {_goalName}, {_goalDescription}";
+        //Create empty variable
+        string checkbox;
+        //Use if statement to determine if it should be marked complete or not (variable will be created using IsComplete Function)
+        if (isComplete == false)
+        {
+            checkbox = "{ }";
+        }
+        else
+        {
+            checkbox = "{X}";
+        }
+
+        return $"{checkbox} {_goalName} ({_goalDescription})";
     }
 
     //Will provide all the details of a goal in a way that is easy to save to a file.
     public abstract string GetStringRepresentation();
-    
+
 }
