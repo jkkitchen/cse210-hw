@@ -2,6 +2,9 @@ using System;
 
 public class EternalGoal : Goal
 {
+    //----Member Attributes----
+    //Without my creative addition, this class had no class specific member attributes
+
     //For creativity, track the number of times this goal has been completed and give bonus points every 10 times it's completed
     int _numberCompleted;
 
