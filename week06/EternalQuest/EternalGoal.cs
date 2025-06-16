@@ -6,7 +6,7 @@ public class EternalGoal : Goal
     //Without my creative addition, this class had no class specific member attributes
 
     //For creativity, track the number of times this goal has been completed and give bonus points every 10 times it's completed
-    int _numberCompleted;
+    protected int _numberCompleted;
 
     //----Constructor----
     //Constructor used to create new goal
